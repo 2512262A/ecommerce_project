@@ -1,8 +1,10 @@
 from django.shortcuts import render
+from .models import *
 
 
 def index(request):
-    context = {}
+    products = Product.objects.all()
+    context = {'products':products}
     return render(request, 'store/index.html', context)
 
 
@@ -22,3 +24,7 @@ def about(request):
 def faq(request):
     context = {}
     return render(request, 'store/faq.html', context)
+
+def register(request):
+    context = {}
+    return render(request, 'store/register.html', context)
