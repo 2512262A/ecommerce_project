@@ -5,5 +5,18 @@
 {% block content %}
 
 <h3>Registration Page</h3>
+<hr/>
+
+{% if registered %}
+<h5><strong>thank you for registering!</strong></h5>
+<a href="{% url 'index' %}">Return to the homepage.</a><br />
+{% else %}
+<form id="user_form" method="post" action="{% url 'register' %}">
+
+    {% csrf_token %}
+    {{ user_form.as_p}}
+    <input type="submit" name="submit" value="Register" />
+</form>
+{% endif %}
 
 {% endblock content %}

@@ -5,7 +5,6 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
     name = models.CharField(max_length=150, null=True)
     email = models.CharField(max_length=150)
-    website = models.URLField(blank=True)
 
     def __str__(self):
         return self.user.username
