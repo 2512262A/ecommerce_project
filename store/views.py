@@ -33,7 +33,6 @@ def register(request):
     if request.method == 'POST':
         user_form = UserForm(request.POST)
 
-
         if user_form.is_valid():
             user = user_form.save()
             user.set_password(user.password)
@@ -46,7 +45,6 @@ def register(request):
 
     else:
         user_form = UserForm()
-
 
     return render(request, 'store/register.html',
                   context={'user_form': user_form,  'registered': registered})
@@ -75,3 +73,4 @@ def user_login(request):
 def user_logout(request):
     logout(request)
     return redirect(reverse('index'))
+

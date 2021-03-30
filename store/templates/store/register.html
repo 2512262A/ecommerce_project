@@ -10,12 +10,12 @@
 
 {% if registered %}
 <h5><strong>thank you for registering!</strong></h5>
-<a href="{% url 'index' %}">Return to the homepage.</a><br />
+<a href="{% url 'login' %}">Login</a><br />
 {% else %}
 <form id="user_form" method="post" action="{% url 'register' %}">
 
     {% csrf_token %}
-    {{ user_form|crispy}}
+    {{user_form|crispy}}
     <input type="submit" name="submit" class="btn btn-secondary" value="Register" />
 </form>
 {% endif %}

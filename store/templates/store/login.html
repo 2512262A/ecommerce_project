@@ -20,7 +20,9 @@
     <label for="InputPassword">Password</label>
     <input type="password" class="form-control" id="InputPassword" name="password" placeholder="Password...">
   </div>
-  <button type="submit" class="btn btn-secondary">Submit</button>
+  <h5><strong>Don't have an account? <a href="{% url 'register' %}">Register</a><br /></strong></h5>
+
+  <button type="submit" class="btn btn-secondary">Login</button>
 </form>
 
 {% endblock content %}
