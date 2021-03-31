@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib import messages
+from django.contrib.auth import update_session_auth_hash
 
 def index(request):
     products = Product.objects.all()
@@ -34,10 +35,7 @@ def register(request):
         user_form = UserForm(request.POST)
 
         if user_form.is_valid():
-            user = user_form.save()
-            user.set_password(user.password)
-            user.save()
-
+            user_form.save()
             registered = True
 
         else:
@@ -84,9 +82,9 @@ def edit_profile(request):
 def change_password(request):
     if request.method == 'POST':
         password_form = PasswordChangeForm(data=request.POST, user=request.user)
-
         if password_form.is_valid():
             password_form.save()
+            update_session_auth_hash(request, password_form.user)
             return redirect(reverse('edit profile'))
 
     else:

@@ -12,7 +12,7 @@ class UserForm(UserCreationForm):
 
 
 class EditProfileForm(UserChangeForm):
-
+    password = None
     class Meta:
         model = User
         fields = ('first_name', 'last_name', 'username', 'email', )
