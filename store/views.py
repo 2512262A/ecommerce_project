@@ -1,11 +1,11 @@
-from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from .models import *
-from store.forms import UserForm
+from store.forms import UserForm, EditProfileForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
-
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib import messages
 
 def index(request):
     products = Product.objects.all()
@@ -53,24 +53,44 @@ def user_login(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
-        user = authenticate(username=username, password=password)
+        user = authenticate(request, username=username, password=password)
 
-        if user:
-            if user.is_active:
-                login(request, user)
-                return redirect(reverse('index'))
-            else:
-                return HttpResponse("your account is disabled")
-
-        # this one is need to change
+        if user is not None:
+            login(request, user)
+            return redirect(reverse('index'))
         else:
-            print(f"Invalid login details: {username}, {password}")
-            return HttpResponse("Invalid login details supplied.")
-    else:
-        return render(request, 'store/login.html')
+            messages.info(request, 'invalid username OR password')
+
+    context = {}
+    return render(request, 'store/login.html', context)
 
 @login_required
 def user_logout(request):
     logout(request)
     return redirect(reverse('index'))
+
+def edit_profile(request):
+    if request.method == 'POST':
+        edit_form = EditProfileForm(request.POST, instance=request.user)
+
+        if edit_form.is_valid():
+            edit_form.save()
+            return redirect(reverse('index'))
+    else:
+        edit_form = EditProfileForm(instance=request.user)
+        context = {'edit_form': edit_form}
+        return render(request, 'store/edit_profile.html', context)
+
+def change_password(request):
+    if request.method == 'POST':
+        password_form = PasswordChangeForm(data=request.POST, user=request.user)
+
+        if password_form.is_valid():
+            password_form.save()
+            return redirect(reverse('edit profile'))
+
+    else:
+        password_form = PasswordChangeForm(user=request.user)
+        context = {'password_form': password_form}
+        return render(request, 'store/change_password.html', context)
 

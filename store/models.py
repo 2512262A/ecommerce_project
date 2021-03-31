@@ -29,7 +29,7 @@ class Order(models.Model):
     customer = models.ForeignKey(UserProfile, on_delete=models.CASCADE, null=True, blank=True)
     date_ordered = models.DateTimeField(auto_now_add=True)
     complete = models.BooleanField(default=False, null=True, blank=True)
-    transaction_id = models.IntegerField(max_length=10, null=True)
+    transaction_id = models.IntegerField(null=True)
 
     def __str__(self):
         return str(self.id)
