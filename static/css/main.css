@@ -43,6 +43,11 @@ body{
 	font-size: 14px;
 }
 
+#checkout-button{
+    float:right;
+    margin:5px;
+}
+
 .chg-quantity{
 	width: 12px;
 	cursor: pointer;
