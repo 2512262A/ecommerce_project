@@ -16,46 +16,50 @@
 
 <!-- Navbar bootstrap link: https://getbootstrap.com/docs/4.0/components/navbar/ -->
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-          <h2 class="navbar-brand">Student Store</h2>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <h2 class="navbar-brand">Student Store</h2>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
 
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-              <li class="nav-item">
+            <li class="nav-item">
                 <a class="nav-link" href="{% url 'index' %}">Home <span class="sr-only">(current)</span></a>
-              </li>
-              <li class="nav-item">
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="{% url 'about' %}">About Us <span class="sr-only">(current)</span></a>
-              </li>
-              <li class="nav-item">
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="{% url 'faq' %}">FAQ <span class="sr-only">(current)</span></a>
-              </li>
-                {% if user.is_authenticated %}
-                <li class="nav-item">
-                <a class="nav-link" href="{% url 'edit profile' %}">Edit Profile <span class="sr-only">(current)</span></a>
-              </li>
-                {% endif %}
-            </ul>
+            </li>
 
-              <div class="form-inline my-2 my-lg-0">
-                  {% if user.is_authenticated %}
-                    <h5 class="navbar-brand mr-3">Hello, {{ user.username }} </h5>
-                    <a href="{% url 'logout' %}"class="btn btn-secondary">Logout</a>
-                  {% else %}
-                    <a href="{% url 'login' %}"class="btn btn-secondary mr-3">Login</a>
-                    <a href="{% url 'register' %}"class="btn btn-secondary">Register</a>
-                  {% endif %}
+            {% if user.is_authenticated %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Profile</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{% url 'edit profile' %}">Edit Profile</a>
+                        <a class="dropdown-item" href="{% url 'change password' %}">Change Password</a>
+                    </div>
+                </li>
+            {% endif %}
+        </ul>
 
-	     	    <a href="{% url 'cart' %}">
-	    		<img  id="cart-icon" src="{% static 'images/trolley.png' %}"></a>
-	    	    <p id="cart-total">0</p>
-              </div>
-          </div>
-	</nav>
+        <div class="form-inline my-2 my-lg-0">
+            {% if user.is_authenticated %}
+                <h5 class="navbar-brand mr-3">Hello, {{ user.username }} </h5>
+                <a href="{% url 'logout' %}"class="btn btn-secondary">Logout</a>
+            {% else %}
+                <a href="{% url 'login' %}"class="btn btn-secondary mr-3">Login</a>
+                <a href="{% url 'register' %}"class="btn btn-secondary">Register</a>
+            {% endif %}
+
+            <a href="{% url 'cart' %}"><img  id="cart-icon" src="{% static 'images/trolley.png' %}"></a>
+            <p id="cart-total">0</p>
+        </div>
+    </div>
+</nav>
 
 
      <div class="container">
