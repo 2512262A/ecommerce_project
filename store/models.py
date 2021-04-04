@@ -13,8 +13,7 @@ from django import forms
 class Product(models.Model):
     name = models.CharField(max_length=200)
     price = models.DecimalField(max_digits=5, decimal_places=2)
-    product_image = models.ImageField(upload_to='images/',null = True,blank = True)
-    
+    product_image = models.ImageField(null = True,blank = True)
     class meta:
         ordering = ['name']
     def __str__(self):
@@ -27,6 +26,8 @@ class Product(models.Model):
         except:
             url = ''
         return url
+    def hm():
+        return ""
 
 class Order(models.Model):
     customer = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
