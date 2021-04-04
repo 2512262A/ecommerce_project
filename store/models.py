@@ -2,13 +2,13 @@ from django.db import models
 from django.contrib.auth.models import User
 from django import forms
 
-class UserProfile(models.Model):
-    user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
-    name = models.CharField(max_length=150, null=True)
-    email = models.EmailField(max_length=200)
+#  class UserProfile(models.Model):
+    # user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
+    # name = models.CharField(max_length=150, null=True)
+    # email = models.EmailField(max_length=200)
 
-    def __str__(self):
-        return self.user.username
+    # def __str__(self):
+      #  return self.user.username
 
 class Product(models.Model):
     name = models.CharField(max_length=200)
@@ -29,10 +29,24 @@ class Product(models.Model):
         return url
 
 class Order(models.Model):
-    customer = models.ForeignKey(UserProfile, on_delete=models.CASCADE, null=True, blank=True)
+    customer = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     date_ordered = models.DateTimeField(auto_now_add=True)
     complete = models.BooleanField(default=False, null=True, blank=True)
     transaction_id = models.IntegerField(null=True)
+
+    @property
+    def get_cart_total(self):
+        orderitems = self.orderitem_set.all()
+        total = sum([item.get_total for item in orderitems])
+        print(total)
+        return total
+
+    @property
+    def get_cart_items(self):
+        orderitems = self.orderitem_set.all()
+        total = sum([item.quantity for item in orderitems])
+        return total
+
 
     def __str__(self):
         return str(self.id)
@@ -43,11 +57,16 @@ class OrderItem(models.Model):
     quantity = models.IntegerField(default=0, blank=True, null=True)
     date_added = models.DateTimeField(auto_now_add=True)
 
+    @property
+    def get_total(self):
+        total = self.quantity * self.product.price
+        return total
+
     def __str__(self):
         return self.product.name
 
 class ShippingAddress(models.Model):
-    customer = models.ForeignKey(UserProfile, on_delete=models.CASCADE, null=True, blank=True)
+    customer = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     order = models.ForeignKey(Order, on_delete=models.CASCADE, null=True, blank=True)
     address = models.CharField(max_length=200)
     city = models.CharField(max_length=200)
