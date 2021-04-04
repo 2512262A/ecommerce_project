@@ -1,13 +1,13 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-class UserProfile(models.Model):
-    user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
-    name = models.CharField(max_length=150, null=True)
-    email = models.EmailField(max_length=200)
+#  class UserProfile(models.Model):
+    # user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
+    # name = models.CharField(max_length=150, null=True)
+    # email = models.EmailField(max_length=200)
 
-    def __str__(self):
-        return self.user.username
+    # def __str__(self):
+      #  return self.user.username
 
 class Product(models.Model):
     name = models.CharField(max_length=200)
@@ -26,7 +26,7 @@ class Product(models.Model):
         return url
 
 class Order(models.Model):
-    customer = models.ForeignKey(UserProfile, on_delete=models.CASCADE, null=True, blank=True)
+    customer = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     date_ordered = models.DateTimeField(auto_now_add=True)
     complete = models.BooleanField(default=False, null=True, blank=True)
     transaction_id = models.IntegerField(null=True)
@@ -44,7 +44,7 @@ class OrderItem(models.Model):
         return self.product.name
 
 class ShippingAddress(models.Model):
-    customer = models.ForeignKey(UserProfile, on_delete=models.CASCADE, null=True, blank=True)
+    customer = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     order = models.ForeignKey(Order, on_delete=models.CASCADE, null=True, blank=True)
     address = models.CharField(max_length=200)
     city = models.CharField(max_length=200)
