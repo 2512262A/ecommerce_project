@@ -7,7 +7,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
-
+from .forms import ImageForm
+from django.http import HttpResponse
 def index(request):
     products = Product.objects.all()
     context = {'products':products}
@@ -29,6 +30,23 @@ def faq(request):
     context = {}
     return render(request, 'store/faq.html', context)
 
+def myupload(request):
+    context = {}
+    return render(request,'store/myupload.html',context)
+
+def image_upload_view(request):
+    #Process images uploaded by users
+    if request.method == 'POST':
+        form = ImageForm(request.POST,request.FILES)
+        if form.is_valid():
+            form.save()
+            #Get current instance obj to display in the template
+            return redirect('success')
+    else:
+        form = ImageForm()
+    return render(request, 'myupload.html', {'form':form})
+def success(request):
+    return HttpResponse('successfully uploaded')
 def register(request):
     registered = False
     if request.method == 'POST':
@@ -52,12 +70,11 @@ def user_login(request):
         username = request.POST.get('username')
         password = request.POST.get('password')
         user = authenticate(request, username=username, password=password)
-
         if user is not None:
             login(request, user)
             return redirect(reverse('index'))
         else:
-            messages.info(request, 'invalid username OR password')
+            messages.info(request, 'Invalid username or password.')
 
     context = {}
     return render(request, 'store/login.html', context)

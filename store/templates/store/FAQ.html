@@ -7,7 +7,92 @@
 {% endblock %}
 
 {% block content %}
+<head>
+<style>
+.faq{
+  position:relative;
+  display:table;
+  position:middle;
+}
+.dropdown{
+  display:none;
+  position: relative;
+  background-color: #F1F2F3;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px 16px;
 
+}
+.faqButtons{
+  font-size: 1.125rem;
+  position: relative;
+  text-align:left;
+  width:100%;
+  background-color: #F1F2F3;
+  border-radius: 5px;
+  border: 2px solid black;
+}
+.faqButtons::first-letter{
+  font-size:40px;
+}
+</style>
+<script>
+
+
+
+  function toggleVisible(myID){
+  var x = document.getElementById(myID);
+  if (x.style.display === 'block'){
+    x.style.display = 'none';
+  }else{
+    x.style.display = 'block';
+  }
+
+
+  }
+</script>
+</head>
+
+
+<div>
+<center>
 <h3>FAQ</h3>
+<div>
+  <ul class = 'faq'>
+    <div>
+      <button class = 'faqButtons'onClick = 'toggleVisible("one")'>+ Who are we and what is this website about?</button>
+      <li class = 'dropdown' id = 'one'>
+        <hr>
+         We are CS students learning web development lookiniiig to create<br>
+         useful websites that others may benefit from. We created this website <br>
+         with students' needs in mind. We realized that many students are in need <br>
+         of selling their second hand item for one reason or another.<br><br>
+         Perhaps you only moved to Glasgow temporarily for your studies and are now moving back?<br>
+         Maybe you are just looking to sell items you no longer need in your room? <br>
+         Whatever your individual circumstance is, this is the site for you!
+      </li>
+    </div>
+    <div>
+      <button class = 'faqButtons'onClick = 'toggleVisible("two")'>+ What items can I sell?</button>
+      <li class = 'dropdown' id = 'two'>
+        <hr>
+        You can sell anything here as long as it is SFW (Safe For Work)
+      </li>
+    </div>
+
+    <div>
+      <button class = 'faqButtons'onClick = 'toggleVisible("three")'>+ How can I pay for the products I choose to buy?</button>
+      <li class = 'dropdown' id = 'three'>
+        <hr>
+        For the time being, you will have to pay in person once the seller delivers the products.
+      </li>
+    </div>
+
+
+  </ul>
+</div>
+</center>
+
+</div>
 
 {% endblock content %}

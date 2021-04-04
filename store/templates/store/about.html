@@ -7,7 +7,41 @@
 {% endblock %}
 
 {% block content %}
+<head>
+  <style>
+  .about{
+    background-color: #F1F2F3;
+    border-radius: 5px;
+    font-size: 1.125rem;
+    border: 2px solid black;
+    margin: 10px;
+  }
+  hr{
+    border:1px solid black;
+  }
+
+  </style>
+</head>
 
 <h3>About</h3>
+<div>
+  <table class = 'about'>
+    <tr>
+      <th>Who are we and what is this website about?</th>
+
+    </tr>
+
+    <td>
+      <hr>
+       We are CS students learning web development looking to create<br>
+       useful websites that others may benefit from. We created this website <br>
+       with students' needs in mind. We realized that many students are in need <br>
+       of selling their second hand item for one reason or another.<br><br>
+       Perhaps you only moved to Glasgow temporarily for your studies and are now moving back?<br>
+       Maybe you are just looking to sell items you no longer need in your room? <br>
+       Whatever your individual circumstance is, this is the site for you!
+    </td>
+  </table>
+</div>
 
 {% endblock content %}
