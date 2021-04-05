@@ -26,8 +26,6 @@ class Product(models.Model):
         except:
             url = ''
         return url
-    def hm():
-        return ""
 
 class Order(models.Model):
     customer = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
@@ -65,6 +63,8 @@ class OrderItem(models.Model):
 
     def __str__(self):
         return self.product.name
+    
+        
 
 class ShippingAddress(models.Model):
     customer = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
