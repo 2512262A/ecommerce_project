@@ -2,13 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django import forms
 
-#  class UserProfile(models.Model):
-    # user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
-    # name = models.CharField(max_length=150, null=True)
-    # email = models.EmailField(max_length=200)
 
-    # def __str__(self):
-      #  return self.user.username
 
 class Product(models.Model):
     name = models.CharField(max_length=200)
@@ -26,8 +20,6 @@ class Product(models.Model):
         except:
             url = ''
         return url
-    def hm():
-        return ""
 
 class Order(models.Model):
     customer = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
@@ -65,6 +57,8 @@ class OrderItem(models.Model):
 
     def __str__(self):
         return self.product.name
+    
+        
 
 class ShippingAddress(models.Model):
     customer = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)

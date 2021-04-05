@@ -11,11 +11,11 @@ class UserForm(UserCreationForm):
         fields = ('first_name', 'last_name', 'username',
                   'email', 'password1', 'password2', )
 
-class ImageForm(forms.ModelForm):
+class ProductForm(forms.ModelForm):
     #Form for the image model
     class Meta:
         model = Product
-        fields = ['name','price','product_image']
+        fields = ('name','price','product_image')
 class EditProfileForm(UserChangeForm):
     password = None
     class Meta:
