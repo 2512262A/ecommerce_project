@@ -12,10 +12,10 @@
     <div class="row">
 		{% for product in products %}
 			<div class="col-lg-4">
-				<img class="thumbnail" src="{{product.imageurl}}">
+				<img class="thumbnail" src="{{MEDIA_URL}}{{product.product_image}}" />
 				<div class="box-element product">
 					<h6><strong>{{product.name}}</strong></h6>
-          <h6><img src="{{MEDIA_URL}}{{product.product_image}}" width = '100px'/></h6>
+					<hr>
 					<button  class="btn btn-outline-secondary add-btn">Add to Cart</button>
 					<h4 style="display: inline-block; float: right"><strong>£{{product.price}}</strong></h4>
 				</div>
