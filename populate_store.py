@@ -20,6 +20,10 @@ def populate():
         for i in ShippingAddress.objects.filter(product = p):
             print(f' - {p} : {i}')
 
+    for p in Product.objects.all():
+        for i in Product.objects.filter(product=p):
+            print(f' - {p} : {i}')
+
 
 def add_pro(name):
     p = Product.objects.get_or_create(name=name)[0]
