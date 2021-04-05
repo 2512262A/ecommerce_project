@@ -31,6 +31,7 @@
 			</div>
 
 			<br>
+
       <script>
       function countQuantity(num){
         quantity = quantity + num;
@@ -46,8 +47,8 @@
       var price = 5;
       var total = 0;
       var quantity = 0;
-
       </script>
+
 			<div class="box-element">
 				<div class="cart-row">
 					<div style="flex:2"></div>
@@ -66,8 +67,7 @@
 						<p class="quantity" id = 'Quantity'>{{item.quantity}}</p>
 						<div class="quantity">
                 <img class="chg-quantity" src="{% static  'images/arrow_up.png' %}" onClick = 'countQuantity(1)'>
-
-                  <img class="chg-quantity" src="{% static  'images/arrow_down.png' %}" onClick = 'countQuantity(-1)'>
+							<img class="chg-quantity" src="{% static  'images/arrow_down.png' %}" onClick = 'countQuantity(-1)'>
 
 
 						</div>

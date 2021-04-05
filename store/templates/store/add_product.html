@@ -1,7 +1,25 @@
-<html>
-<form enctype="multipart/form-data" action="/add_product/" method="post">
+<!DOCTYPE html>
+{% extends 'store/base.html' %}
+{% load static %}
+{%load crispy_forms_tags %}
+
+{% block title_block %}
+    Add Product
+{% endblock %}
+
+{% block content %}
+
+<h3>Add a Product</h3>
+<hr/>
+
+<form id="user_form" method="post" action="{% url 'upload product' %}">
+
     {% csrf_token %}
-    {{ form }}
-    <input type="submit" value="Submit">
+    {{form|crispy}}
+    <input type="submit" name="submit" class="btn btn-secondary" value="Create Listing" />
 </form>
-</html>
+
+<a href="{% url 'index' %}">Back to Homepage</a><br />
+
+
+{% endblock content %}

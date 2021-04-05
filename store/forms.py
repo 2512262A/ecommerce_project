@@ -16,6 +16,7 @@ class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
         fields = ('name','price','product_image')
+
 class EditProfileForm(UserChangeForm):
     password = None
     class Meta:
