@@ -1,7 +1,12 @@
-<html>
+
+{% if user.is_authenticated %}
 <form enctype="multipart/form-data" action="/add_product/" method="post">
     {% csrf_token %}
     {{ form }}
     <input type="submit" value="Submit">
 </form>
-</html>
+{% else %}
+<h5>You'll need to create an account or login before you can post a product!</h5><br />
+<a class = "box-element"href="{% url 'login' %}">Login &nbsp&nbsp&nbsp</a>
+<a class = "box-element"href="{% url 'register' %}">Create an account</a><br /><br />
+{% endif %}
