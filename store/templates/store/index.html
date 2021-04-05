@@ -1,7 +1,8 @@
 <!DOCTYPE html>
+<html>
 {% extends 'store/base.html' %}
+
 {% load static %}
-{% load staticfiles %}
 {%load crispy_forms_tags %}
 
 {% block title_block %}
@@ -10,6 +11,22 @@
 
 
 {% block content %}
+<head>
+  <div>
+  <form enctype="multipart/form-data" action="/add_product/" method="post">
+    {% csrf_token %}
+    <h5>Ready to sell your items?</h5>
+    {% if user.is_authenticated %}
+
+      <input type="submit" value="YES">
+    {% else %}
+    <h5>You'll need to create an account or login first!</h5><br />
+    <a class = "box-element"href="{% url 'login' %}">Login &nbsp&nbsp&nbsp</a>
+    <a class = "box-element"href="{% url 'register' %}">Create an account</a><br /><br />
+    {% endif %}
+  </form>
+</div>
+</head>
     <div class="row">
 		{% for product in products %}
 			<div class="col-lg-4">
@@ -21,21 +38,10 @@
 				</div>
 			</div>
 		{% endfor %}
-  {% if registered %}
-  <form enctype="multipart/form-data" action="/add_product/" method="post">
-    {% csrf_token %}
-    <label for="product_image">Product image: </label>
-    <input id="product_image" type="file" name="product_image"><br>
-    <input id="product_name" type="text" name="product_name"><br>
-    <input id="product_price" type="number" name="product_price"><br>
-    <input type="submit" value="OK">
-</form>
-{% else %}
-<h1>You must be a registered user to sell items</h1>
-{% endif %}
-</div>
 
 
 
 
+  </div>
 {% endblock content %}
+</html>
