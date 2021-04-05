@@ -8,19 +8,20 @@
     Homepage
 {% endblock %}
 
+
 {% block content %}
     <div class="row">
 		{% for product in products %}
 			<div class="col-lg-4">
 				<div class="box-element product">
 					<h6><strong>{{product.name}}  {{order.name}}</strong></h6>
-          <h6><img class = 'thumbnail' src="{{MEDIA_URL}}{{product.product_image}}" width = '100px'/></h6>
+          <img class = 'thumbnail' src="{{MEDIA_URL}}{{product.product_image}}" width = '100px'/>
 					<button  class="btn btn-outline-secondary add-btn">Add to Cart</button>
 					<h4 style="display: inline-block; float: right"><strong>£{{product.price}}</strong></h4>
 				</div>
 			</div>
 		{% endfor %}
-
+  {% if registered %}
   <form enctype="multipart/form-data" action="/add_product/" method="post">
     {% csrf_token %}
     <label for="product_image">Product image: </label>
@@ -29,6 +30,9 @@
     <input id="product_price" type="number" name="product_price"><br>
     <input type="submit" value="OK">
 </form>
+{% else %}
+<h1>You must be a registered user to sell items</h1>
+{% endif %}
 </div>
 
 
