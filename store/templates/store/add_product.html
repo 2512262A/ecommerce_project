@@ -11,7 +11,7 @@
 
 <h3>Add a Product</h3>
 <hr/>
-{% if registered %}
+
 <form id="user_form" method="post" action="{% url 'upload product' %}">
 
     {% csrf_token %}
@@ -19,8 +19,6 @@
     <input type="submit" name="submit" class="btn btn-secondary" value="Create Listing" />
 </form>
 
-<a href="{% url 'index' %}">Back to Homepage</a><br />
-{% else %}
-<h3>Ooops, only registered user can create their listing, <a href="{% url 'register' %}">Register here</a></h3>
+<h5>Back to <a href="{% url 'index' %}">Homepage</a></h5><br />
 
 {% endblock content %}
