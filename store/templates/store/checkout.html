@@ -55,7 +55,7 @@
                 <hr>
                 {% for item in items %}
                     <div class="cart-row">
-                        <div style="flex:2"><img class="row-image" src="{{item.product.imageurl}}"></div>
+                        <div style="flex:2"><img class="row-image" src="{{MEDIA_URL}}{{product.product_image}}"></div>
                         <div style="flex:2"><p>{{item.product.name}}</p></div>
 					    <div style="flex:1" id = 'price'><p>{{item.product.price}}</p></div>
                         <div style="flex:1"><p>{{item.quantity}}</p></div>
