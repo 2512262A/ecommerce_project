@@ -12,16 +12,9 @@
     <div class="row">
 		{% for product in products %}
 			<div class="col-lg-4">
-<<<<<<< HEAD
-				<img class="thumbnail" src="{{MEDIA_URL}}{{product.product_image}}" />
-				<div class="box-element product">
-					<h6><strong>{{product.name}}</strong></h6>
-					<hr>
-=======
 				<div class="box-element product">
 					<h6><strong>{{product.name}}  {{order.name}}</strong></h6>
           <h6><img class = 'thumbnail' src="{{MEDIA_URL}}{{product.product_image}}" width = '100px'/></h6>
->>>>>>> 1a88859ce8945336a0a7fa62bdec13b02ac9a136
 					<button  class="btn btn-outline-secondary add-btn">Add to Cart</button>
 					<h4 style="display: inline-block; float: right"><strong>£{{product.price}}</strong></h4>
 				</div>
@@ -36,14 +29,8 @@
     <input id="product_price" type="number" name="product_price"><br>
     <input type="submit" value="OK">
 </form>
+</div>
 
-
-  </div>
-  <script>
-  function update(myProduct){
-    order = myProduct;
-  }
-  </script>
 
 
 
