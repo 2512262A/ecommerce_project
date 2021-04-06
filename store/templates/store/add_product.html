@@ -17,7 +17,7 @@
 
     {% csrf_token %}
     {{form|crispy}}
-    <input type="submit" name="submit" class="btn btn-secondary" value="Create Listing" onClick = 'seller()' />
+    <input type="submit" name="submit" class="btn btn-secondary" value="Create Listing" />
 </form>
 
 <h5>Back to <a href="{% url 'index' %}">Homepage</a></h5><br />
