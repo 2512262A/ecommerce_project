@@ -19,8 +19,8 @@
 				<br>
 				<table class="table">
 					<tr>
-						<th><h5>Items: <strong>{{order.get_cart_items}}</strong></h5></th>
-						<th><h5>Total:<strong> {{order.get_cart_total}}</strong></h5></th>
+						<th><h5 id = 'items'>Items: <strong>{{order.get_cart_items}}</strong></h5></th>
+						<th><h5 id = 'TOTAL'>Total:<strong> {{order.get_cart_total}}</strong></h5></th>
 						<th>
 							<a id="checkout-btn" class="btn btn-success" href="{% url 'checkout' %}">Checkout</a>
 						</th>
@@ -32,18 +32,19 @@
 			<br>
 
       <script>
-      function countQuantity(num){
+      function countQuantity(num,price){
         quantity = quantity + num;
         if (quantity < 0){
           quantity = 0;
         }
         document.getElementById('Quantity').innerHTML = quantity;
+        document.getElementById('items').innerHTML = "Items: "+quantity;
         total = price*quantity
         document.getElementById('total').innerHTML = total + '$';
+        document.getElementById('TOTAL').innerHTML = "Total: "+total + '$';
         document.getElementById('STotal').innerHTML = 'Total: $' +total;
       }
 
-      var price = 5;
       var total = 0;
       var quantity = 0;
       </script>
@@ -59,19 +60,19 @@
 
 				{% for item in items %}
 				<div class="cart-row">
-					<div style="flex:2"><img class="row-image" src="{{MEDIA_URL}}{{product.product_image}}"></div>
+					<div style="flex:2"><img class="row-image" src="{{MEDIA_URL}}{{item.product.product_image}}" alt = "{{item.product.name}}"></div>
 					<div style="flex:2"><p>{{item.product.name}}</p></div>
 					<div style="flex:1" id = 'price'><p>{{item.product.price}}</p></div>
 					<div style="flex:1">
 						<p class="quantity" id = 'Quantity'>{{item.quantity}}</p>
 						<div class="quantity">
-                <img class="chg-quantity" src="{% static  'images/arrow_up.png' %}" onClick = 'countQuantity(1)'>
-							<img class="chg-quantity" src="{% static  'images/arrow_down.png' %}" onClick = 'countQuantity(-1)'>
+                <img class="chg-quantity" src="{% static  'images/arrow_up.png' %}" onClick = 'countQuantity(1,{{item.product.price}})'>
+							<img class="chg-quantity" src="{% static  'images/arrow_down.png' %}" onClick = 'countQuantity(-1,{{item.product.price}})'>
 
 
 						</div>
 					</div>
-					<div id = "total" style="flex:1"><p>0</p></div>
+					<div id = "total" style="flex:1"><p>{{order.get_cart_total}}</p></div>
 				</div>
 				{% endfor %}
 

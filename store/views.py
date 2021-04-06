@@ -146,7 +146,7 @@ def update_item(request):
     print('Product:', productId)
 
     customer = request.user
-    product = Product.object.get(id=productId)
+    product = Product.objects.get(id=productId)
     order, create = Order.objects.get_or_create(customer=customer, complete=False)
 
     orderItem, created = OrderItem.objects.get_or_create(order=order, product=product)
