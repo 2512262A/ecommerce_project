@@ -15,14 +15,10 @@ class ProductForm(forms.ModelForm):
     #Form for the image model
     class Meta:
         model = Product
-        fields = ('name','price','product_image')
+        fields = ('name','price','product_image','seller')
 
 class EditProfileForm(UserChangeForm):
     password = None
     class Meta:
         model = User
         fields = ('first_name', 'last_name', 'username', 'email', )
-
-
-
-

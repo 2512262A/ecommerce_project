@@ -9,6 +9,7 @@
 
 {% block content %}
 
+
 <h3>Add a Product</h3>
 <hr/>
 
@@ -16,7 +17,7 @@
 
     {% csrf_token %}
     {{form|crispy}}
-    <input type="submit" name="submit" class="btn btn-secondary" value="Create Listing" />
+    <input type="submit" name="submit" class="btn btn-secondary" value="Create Listing" onClick = 'seller()' />
 </form>
 
 <h5>Back to <a href="{% url 'index' %}">Homepage</a></h5><br />

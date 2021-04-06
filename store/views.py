@@ -37,7 +37,7 @@ def cart(request):
         order = {'get_cart_total':0, 'get_cart_items':0}
         cartItems = order['get_cart_items']
 
-    context = {'items':items, 'order':order, 'cartItems':cartItems, }
+    context = {'items':items, 'order':order, 'cartItems':cartItems,}
     return render(request, 'store/cart.html', context)
 
 def checkout(request):
@@ -61,6 +61,12 @@ def about(request):
 def faq(request):
     context = {}
     return render(request, 'store/faq.html', context)
+
+def profile(request):
+
+    context = {}
+
+    return render(request, 'store/profile.html', context=context)
 
 @login_required
 def image_upload_view(request):
@@ -142,8 +148,7 @@ def update_item(request):
     data = json.loads(request.body)
     productId = data['productId']
     action = data['action']
-    print('Action:', action)
-    print('Product:', productId)
+
 
     customer = request.user
     product = Product.objects.get(id=productId)
@@ -155,6 +160,7 @@ def update_item(request):
         orderItem.quantity = (orderItem.quantity + 1)
     elif action == 'remove':
         orderItem.quantity = (orderItem.quantity - 1)
+    
 
     orderItem.save()
 

@@ -3,12 +3,12 @@ from django.contrib.auth.models import User
 from django import forms
 
 
-
 class Product(models.Model):
     name = models.CharField(max_length=200)
     price = models.DecimalField(max_digits=5, decimal_places=2)
     product_image = models.ImageField(null = True,blank = True)
-    class meta:
+    seller = models.CharField(null= True, blank = True, max_length = 200)
+    class Meta:
         ordering = ['name']
     def __str__(self):
         return self.name
@@ -31,7 +31,6 @@ class Order(models.Model):
     def get_cart_total(self):
         orderitems = self.orderitem_set.all()
         total = sum([item.get_total for item in orderitems])
-        print(total)
         return total
 
     @property
@@ -57,8 +56,8 @@ class OrderItem(models.Model):
 
     def __str__(self):
         return self.product.name
-    
-        
+
+
 
 class ShippingAddress(models.Model):
     customer = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
