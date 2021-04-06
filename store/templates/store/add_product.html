@@ -12,7 +12,7 @@
 <h3>Add a Product</h3>
 <hr/>
 
-<form id="user_form" method="post" action="{% url 'upload product' %}">
+<form enctype="multipart/form-data" id="user_form" method="post" action="{% url 'upload product' %}">
 
     {% csrf_token %}
     {{form|crispy}}
