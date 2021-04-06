@@ -27,7 +27,7 @@ SECRET_KEY = '9d1ek7_vilfy2(4zoecc+pm=hhs#h=a@%5cws4esp+2cu=$0o4'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['guowen.pythonanywhere.com']
+ALLOWED_HOSTS = ['guowen.pythonanywhere.com', '127.0.0.1' ]
 
 
 # Application definition
