@@ -51,7 +51,7 @@
 						<p class="quantity" id = 'Quantity'>{{item.quantity}}</p>
 						<div class="quantity">
                 <img class="chg-quantity update-cart" src="{% static  'images/arrow_up.png' %}" data-product="{{item.product.id}}" data-action = 'add'>
-							<img class="chg-quantity update-cart" src="{% static  'images/arrow_down.png' %}" data-product="{{item.product.id}}}" data-action = 'add'>
+							<img class="chg-quantity update-cart" src="{% static  'images/arrow_down.png' %}" data-product="{{item.product.id}}" data-action = 'remove'>
 
 
 						</div>
@@ -59,6 +59,7 @@
 					<div id = "total" style="flex:1"><p>{{order.get_cart_total}}</p></div>
 				</div>
 				{% endfor %}
+
 
 			</div>
 		</div>
