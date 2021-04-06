@@ -31,23 +31,7 @@
 
 			<br>
 
-      <script>
-      function countQuantity(num,price){
-        quantity = quantity + num;
-        if (quantity < 0){
-          quantity = 0;
-        }
-        document.getElementById('Quantity').innerHTML = quantity;
-        document.getElementById('items').innerHTML = "Items: "+quantity;
-        total = price*quantity;
-        document.getElementById('total').innerHTML = total  + '$';
-        document.getElementById('TOTAL').innerHTML = "Total: "+total + '$';
-        document.getElementById('STotal').innerHTML = 'Total: $' +total;
-      }
-
-      var total = 0;
-      var quantity = 0;
-      </script>
+      
 
 			<div class="box-element">
 				<div class="cart-row">
@@ -66,8 +50,8 @@
 					<div style="flex:1">
 						<p class="quantity" id = 'Quantity'>{{item.quantity}}</p>
 						<div class="quantity">
-                <img class="chg-quantity" src="{% static  'images/arrow_up.png' %}" onClick = 'countQuantity(1,{{item.product.price}})'>
-							<img class="chg-quantity" src="{% static  'images/arrow_down.png' %}" onClick = 'countQuantity(-1,{{item.product.price}},)'>
+                <img class="chg-quantity update-cart" src="{% static  'images/arrow_up.png' %}" onClick = 'countQuantity(1,{{item.product.price}})' data-product="{{item.product.id}}" data-action = 'add'>
+							<img class="chg-quantity update-cart" src="{% static  'images/arrow_down.png' %}" onClick = 'countQuantity(-1,{{item.product.price}},)'data-product="{{item.product.id}}}" data-action = 'add'>
 
 
 						</div>
