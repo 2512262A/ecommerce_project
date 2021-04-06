@@ -31,7 +31,7 @@
 
 			<br>
 
-      
+
 
 			<div class="box-element">
 				<div class="cart-row">
@@ -50,8 +50,8 @@
 					<div style="flex:1">
 						<p class="quantity" id = 'Quantity'>{{item.quantity}}</p>
 						<div class="quantity">
-                <img class="chg-quantity update-cart" src="{% static  'images/arrow_up.png' %}" onClick = 'countQuantity(1,{{item.product.price}})' data-product="{{item.product.id}}" data-action = 'add'>
-							<img class="chg-quantity update-cart" src="{% static  'images/arrow_down.png' %}" onClick = 'countQuantity(-1,{{item.product.price}},)'data-product="{{item.product.id}}}" data-action = 'add'>
+                <img class="chg-quantity update-cart" src="{% static  'images/arrow_up.png' %}" data-product="{{item.product.id}}" data-action = 'add'>
+							<img class="chg-quantity update-cart" src="{% static  'images/arrow_down.png' %}" data-product="{{item.product.id}}}" data-action = 'add'>
 
 
 						</div>
